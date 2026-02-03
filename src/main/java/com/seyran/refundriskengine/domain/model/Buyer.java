@@ -4,6 +4,8 @@ import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name="buyers")
 @Getter
@@ -22,4 +24,10 @@ public class Buyer {
     private int totalOrders;
     private int totalRefunds;
     private boolean blocked;
+    private LocalDateTime createdAt;
+
+    @PrePersist
+    public void prePersist(){
+        createdAt = LocalDateTime.now();
+    }
 }
