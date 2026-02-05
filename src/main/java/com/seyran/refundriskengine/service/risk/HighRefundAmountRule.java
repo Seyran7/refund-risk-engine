@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 import java.math.BigDecimal;
 
 @Component
-public class HighAmountRule implements RiskRule {
+public class HighRefundAmountRule implements RiskRule {
 
     private static final BigDecimal THRESHOLD = BigDecimal.valueOf(1000);
 
@@ -16,5 +16,9 @@ public class HighAmountRule implements RiskRule {
             return 20;
         }
         return 0;
+    }
+    @Override
+    public int priority() {
+        return 2;
     }
 }

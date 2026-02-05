@@ -12,4 +12,8 @@ public class FrequentRefundRule implements RiskRule {
         }
         return 0;
     }
+    @Override
+    public int priority() {
+        return 1;
+    }
 }
