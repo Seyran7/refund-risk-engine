@@ -2,6 +2,7 @@ package com.seyran.refundriskengine.service;
 
 import com.seyran.refundriskengine.domain.model.Order;
 import com.seyran.refundriskengine.domain.model.RiskLevel;
+import com.seyran.refundriskengine.domain.model.RiskResult;
 import com.seyran.refundriskengine.service.risk.RiskRule;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +16,7 @@ public class RiskService {
     public RiskService(List<RiskRule> rules) {
         this.rules = rules;
     }
-    public int calculateRisk(Order order ) {
+    public RiskResult calculateRisk(Order order ) {
         int score = rules.stream()
                 .sorted(Comparator.comparingInt(RiskRule::priority))
                 .mapToInt(rule->rule.calculateRisk(order))

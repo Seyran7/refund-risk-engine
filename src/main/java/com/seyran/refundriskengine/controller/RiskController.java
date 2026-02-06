@@ -2,6 +2,7 @@ package com.seyran.refundriskengine.controller;
 
 
 import com.seyran.refundriskengine.domain.model.Order;
+import com.seyran.refundriskengine.domain.model.RiskResult;
 import com.seyran.refundriskengine.service.RiskService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -20,13 +21,9 @@ public class RiskController {
     private final RiskService riskService;
 
     @PostMapping("/calculate")
-    public ResponseEntity<Map<String,Object>> calculateRisk(@RequestBody Order order) {
-        int riskScore = riskService.calculateRisk(order);
-        Map<String,Object> response = new HashMap<>();
-        response.put("riskScore", riskService);
-        response.put("OrderId", order.getId());
-        response.put("riskLevel",resolveRiskLevel(riskScore));
-        return ResponseEntity.ok(response);
+    public ResponseEntity<RiskResult> calculate(@RequestBody Order order) {
+        RiskResult result =riskService.calculateRisk(order);
+        return ResponseEntity.ok(result);
     }
     private String resolveRiskLevel(int riskScore){
         if(riskScore >=70) return "HIGh";
