@@ -6,13 +6,13 @@ import org.springframework.stereotype.Component;
 import java.math.BigDecimal;
 
 @Component
-public class HighRefundAmountRule implements RiskRule {
+public class HighAmountRule implements RiskRule {
 
     private static final BigDecimal THRESHOLD = BigDecimal.valueOf(1000);
 
     @Override
     public int calculateRisk (Order order){
-        if(order.getTotalAmount().compareTo(THRESHOLD)<=0){
+        if(order.getTotalAmount().compareTo(THRESHOLD)>0){
             return 20;
         }
         return 0;
