@@ -1,7 +1,8 @@
-package com.seyran.refundriskengine.service.risk;
+package com.seyran.refundriskengine.service;
 
 import com.seyran.refundriskengine.domain.model.Order;
 import com.seyran.refundriskengine.domain.model.OrderStatus;
+import com.seyran.refundriskengine.service.risk.RiskRule;
 import org.springframework.stereotype.Component;
 
 @Component

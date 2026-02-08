@@ -1,6 +1,7 @@
 package com.seyran.refundriskengine.service.risk;
 
 import com.seyran.refundriskengine.domain.model.Order;
+import com.seyran.refundriskengine.service.HighAmountRule;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,9 +1,8 @@
-package com.seyran.refundriskengine.service;
+package com.seyran.refundriskengine.service.risk;
 
 import com.seyran.refundriskengine.domain.model.Order;
 import com.seyran.refundriskengine.domain.model.RiskLevel;
 import com.seyran.refundriskengine.domain.model.RiskResult;
-import com.seyran.refundriskengine.service.risk.RiskRule;
 import org.springframework.stereotype.Service;
 
 import java.util.Comparator;

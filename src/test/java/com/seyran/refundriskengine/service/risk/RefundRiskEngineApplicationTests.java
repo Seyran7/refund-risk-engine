@@ -1,4 +1,4 @@
-package com.seyran.refundriskengine;
+package com.seyran.refundriskengine.service.risk;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
