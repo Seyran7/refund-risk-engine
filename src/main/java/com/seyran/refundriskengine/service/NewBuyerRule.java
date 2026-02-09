@@ -18,11 +18,14 @@ public class NewBuyerRule implements RiskRule {
         if(order.getBuyer()==null||order.getBuyer().getCreatedAt()==null){
             return 0;
         }
-        long accountAgeDays = ChronoUnit.DAYS.between(order.getBuyer().getCreatedAt(), LocalDateTime.now());
-        if(accountAgeDays<NEW_BUYER_DAYS){
+        long accountAgeDays = ChronoUnit.DAYS.between(
+                order.getBuyer().getCreatedAt().toLocalDate(),
+                LocalDateTime.now().toLocalDate());
+        if(accountAgeDays < NEW_BUYER_DAYS) {
             return 15;
         }
         return 0;
+
     }
     @Override
     public int priority() {

@@ -1,7 +1,6 @@
 package com.seyran.refundriskengine.domain.model;
 
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -27,7 +26,6 @@ public class Buyer {
     private boolean blocked;
 
 
-    @JsonFormat(pattern = "yyyy-MM-dd 'T' HH:mm.ss")
     private LocalDateTime createdAt =LocalDateTime.now();
 
     @PrePersist
