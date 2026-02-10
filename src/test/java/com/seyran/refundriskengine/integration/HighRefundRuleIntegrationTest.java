@@ -7,44 +7,44 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.*;
 
-
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class RiskControllerIntegrationTest {
+public class HighRefundRuleIntegrationTest {
     @Autowired
     private TestRestTemplate restTemplate;
 
     @Test
-    void testCalculateRiskEndPoint(){
-        Buyer buyer =Buyer.builder()
-                .id(1L)
-                .email("test@gmail.com")
+    public void testHighRefundBuyerRisk() {
+        Buyer buyer=Buyer.builder()
+                .id(2L)
+                .email("refund@gmail.com")
                 .totalOrders(5)
-                .totalRefunds(2)
+                .totalRefunds(4)
                 .blocked(false)
-                .createdAt(LocalDateTime.now().minusDays(3))
+                .createdAt(LocalDateTime.now().minusDays(30))
                 .build();
 
-        Order order = Order.builder()
-                .id(100L)
+        Order order= Order.builder()
+                .id(101L)
                 .buyer(buyer)
-                .totalAmount(BigDecimal.valueOf(1500))
+                .totalAmount(BigDecimal.valueOf(2000))
                 .status(OrderStatus.COMPLETED)
                 .build();
-
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<Order> request = new HttpEntity<>(order, headers);
 
-        ResponseEntity<RiskResult> response=restTemplate.postForEntity("/api/risk/calculate",request,RiskResult.class);
+        ResponseEntity<RiskResult> response = restTemplate.postForEntity(
+                "/api/risk/calculate", request, RiskResult.class);
 
         assertEquals(HttpStatus.OK,response.getStatusCode());
-        RiskResult result = response.getBody();
-        assertEquals(35,result.getScore());
-        assertEquals(RiskLevel.MEDIUM,result.getLevel());
+        RiskResult riskResult=response.getBody();
+        assertEquals(30, riskResult.getScore());
+        assertEquals(RiskLevel.MEDIUM,riskResult.getLevel());
+
     }
 }

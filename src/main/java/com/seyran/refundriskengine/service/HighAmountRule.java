@@ -20,6 +20,6 @@ public class HighAmountRule implements RiskRule {
     }
     @Override
     public int priority() {
-        return 2;
+        return 1;
     }
 }

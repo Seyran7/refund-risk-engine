@@ -27,8 +27,4 @@ public class NewBuyerRule implements RiskRule {
         return 0;
 
     }
-    @Override
-    public int priority() {
-        return 0;
-    }
 }

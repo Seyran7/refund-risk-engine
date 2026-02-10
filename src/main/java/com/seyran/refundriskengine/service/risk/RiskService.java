@@ -21,11 +21,6 @@ public class RiskService {
                 .mapToInt(rule->rule.calculateRisk(order))
                 .sum();
 
-        RiskLevel level;
-        if(score >= 60) level=RiskLevel.HIGH;
-        else if(score>=30) level=RiskLevel.MEDIUM;
-        else level = RiskLevel.LOW;
-
-        return new RiskResult(score,level);
+        return new RiskResult(score, RiskLevel.fromScore(score));
     }
 }
