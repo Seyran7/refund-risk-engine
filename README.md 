@@ -1,0 +1,35 @@
+# Refund Risk Engine
+
+Rule-based refund risk calculation microservice built with Spring Boot.
+
+## Features
+
+- Rule-based risk calculation (Strategy pattern)
+- DTO + Validation
+- Global Exception Handling
+- Integration and Controller tests
+- Clean layered architecture
+
+## Tech Stack
+
+- Java 17
+- Spring Boot
+- Gradle
+- Lombok
+- JUnit 5
+- MockMvc
+
+## Endpoint
+
+POST /api/risk/calculate
+
+## Architecture
+
+Controller → Validation → Mapper → Service → Risk Rules → Result
+
+## Example Response
+
+{
+  "score": 45,
+  "level": "MEDIUM"
+}
